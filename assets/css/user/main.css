@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+.container{
+    width: 1490px;
+    font-weight: 600;
+}
+
+.group-info{
+    position: relative;
+}
+
+.info-tabs{
+    margin-bottom: -1px;
+    position: relative;
+}
+
+.info-tabs__tabs{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.info-tabs__tab{
+    z-index: 2;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    padding: 22px 0;
+    color: #000000;
+    margin: 0;
+    list-style: none;
+    cursor: pointer;
+}
+
+.info-tabs__tab.active{
+    font-weight: bold;
+    border-bottom: 2px solid var(--main-color);
+}
+
+.info-tabs__tab:not(:last-child){
+    margin-right: 20px;
+}
+
+.group-info__body{
+    position: relative;
+    border-top: 1px solid #e3e4e5;
+    border-bottom: 1px solid #e3e4e5;
+}
+
+.info-content{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    max-height: 420px;
+}
+
+.tab-content__item{
+    padding: 40px 40px;
+    display: none;
+}
+
+.product-gallery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.active-view__img{
+    cursor: pointer;
+    height: 350px;
+    width: 350px;
+    object-fit: contain;
+}
+
+.image-carousel{
+    margin-top: 10px;
+    display: flex;
+}
+
+.carousel__item{
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    box-sizing: border-box;
+    border: solid 1px #e8e8e8;
+}
+
+.carousel__item:not(:last-child){
+    margin-right: 5px;
+}
+
+.carousel__item.active{
+    filter: brightness(25%);
+    border: none;
+}
+
+.info-content__item{
+    margin: 0 30px;
+}
+
+.info-content__item-head{
+    margin: 0;
+    font-size: 20px;
+    color: #1d2e39;
+    font-weight: normal;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.product-text__price{
+    margin: 14px 0 0 0;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.product-text__price-description{
+    margin: 4px 0 0 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #931e14;
+    font-weight: normal;
+}
+
+.product-text__params{
+    margin: 30px 0 0 0;
+    padding: 0 0 0 17px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    color: #000000;
+}
+
+.product-text__params-item{
+    font-size: 13px;
+    list-style: disc;
+}
+
+.attachments-list{
+    margin: 20px 0 0 0;
+    padding: 0;
+    /*overflow-y: scroll;*/
+}
+
+.attachments-list__item{
+    list-style: none;
+}
+
+.attachments-list__item:not(:last-child){
+    margin-bottom: 18px;
+}
+
+.product-attachment{
+    display: flex;
+    align-items: center;
+}
+
+.product-attachment__placeholder{
+    width: 25px;
+    height: 32px;
+    margin-right: 7px;
+}
+
+.product-attachment__link{
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #000000;
+}
+
+.product-attachment__size{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    color: #777d81;
+}

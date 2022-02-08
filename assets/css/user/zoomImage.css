@@ -1,0 +1,41 @@
+.overlay{
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.5);
+}
+
+.popup{
+    max-height: 100vh;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    z-index: 1500;
+}
+
+.popup__body{
+
+}
+
+.popup__close{
+    background: url('/assets/svg/close-toolbar-icon.svg') center no-repeat;
+    cursor: pointer;
+    position: absolute;
+    top: -25px;
+    right: -3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 10px 0 0;
+    width: 20px;
+    height: 20px;
+}
+
+.popup__image{
+    max-height: 90vh;
+    max-width: 90vw;
+}
