@@ -374,9 +374,9 @@ class ProductTabAttributes {
     }
 }
 
-$connection = new mysqli('localhost', 'admin', '123123', 'verstka');
-if ($connection->connect_error) {
-    die('Connect Error (' . $connection->connect_errno . ') ' . $connection->connect_error);
-}
-
+//$connection = new mysqli('localhost', 'admin', '123123', 'verstka');
+//if ($connection->connect_error) {
+//    die('Connect Error (' . $connection->connect_errno . ') ' . $connection->connect_error);
+//}
+//
 //echo (new ProductTabAttributes($connection))->getProductTabs(228);
