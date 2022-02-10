@@ -4,32 +4,28 @@
     <meta charset="UTF-8">
     <title>ITEM (1600)</title>
 
-    <link rel="stylesheet" href="/assets/css/user/vars.css">
-    <link rel="stylesheet" href="/assets/css/user/main.css">
-    <link rel="stylesheet" href="/assets/css/user/controls.css">
-    <link rel="stylesheet" href="/assets/css/user/zoomImage.css">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script src="/assets/js/user/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="/build/css/user/ProductTabAttributes.css">
+    <script src="/build/js/user/ProductTabAttributes.js"></script>
+
 </head>
 
 <body>
 
-<?php //var_dump($data); ?>
-
     <div class="container">
 
         <section class="group-info">
-
             <div class="info-tabs">
-
                 <ul class="info-tabs__tabs">
 
                     <?php foreach ($data as $tab_name => $value): ?>
                         <li class="info-tabs__tab"><?= $tab_name ?></li>
                     <?php endforeach; ?>
-<!--                    <li class="info-tabs__tab active">Обзор</li>-->
                 </ul>
-
             </div>
 
 
@@ -47,6 +43,7 @@
                                     <div class="product-gallery info-content__item">
 
                                         <div class="active-view product-gallery__active">
+                                            <div class="zoom-in-icon"></div>
                                             <!-- adding image here -->
                                         </div>
 
@@ -55,10 +52,9 @@
                                                 <img src="<?= $src['href'] ?>" alt="" class="carousel__item">
                                             <?php endforeach; ?>
                                         </div>
-
                                     </div>
 
-                                    <div class="product-text info-content__item">
+                                    <div class="product-text info-content__main-text info-content__item">
 
                                         <h3 class="info-content__item-head"><?= $values['title'][0]['value'] ?></h3>
                                         <p class="product-text__price"><?= $values['price'][0]['value'] ?></p>
@@ -69,31 +65,30 @@
                                                 <li class="product-text__params-item"><?= $info['value'] ?></li>
                                             <?php endforeach; ?>
                                         </ul>
-
                                     </div>
 
-                                    <div class="product-attachments info-content__item">
+                                    <div class="info-content__attachments info-content__item">
 
                                         <h3 class="info-content__item-head">Материалы</h3>
-
                                         <ul class="attachments-list">
 
                                             <?php foreach ($values['attachement'] as $attachement): ?>
 
-                                                <li class="product-attachment attachments-list__item">
-                                                    <img class="product-attachment__placeholder" src="/assets/svg/<?= $attachement['type'] ?>-file-type-placeholder.svg" alt="">
-                                                    <div class="product-attachment__text">
+                                                <li class="attachments-list__item">
+                                                    <div class="product-attachment">
+                                                        <img class="product-attachment__placeholder" src="/build/svg/<?= $attachement['type'] ?>-file-type-placeholder.svg" alt="">
+                                                        <div class="product-attachment__text">
 
-                                                        <a class="product-attachment__link" href="<?=$attachement['href']?>" download>
-                                                            <?= $attachement['value'] ?>
-                                                        </a>
-                                                        <div class="product-attachment__size"><?= $attachement['props'] ?></div>
+                                                            <a class="product-attachment__link" href="<?=$attachement['href']?>" download>
+                                                                <?= $attachement['value'] ?>
+                                                            </a>
+                                                            <div class="product-attachment__size"><?= $attachement['props'] ?></div>
+                                                        </div>
                                                     </div>
                                                 </li>
                                             <?php endforeach; ?>
 
                                         </ul>
-
                                     </div>
                                 </div>
                             <?php else: ?>

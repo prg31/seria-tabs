@@ -1,19 +1,18 @@
 <?php
 
-require_once './script.php';
-require_once './controllers.php';
-require_once './helpers.php';
+require_once './ProductTabAttributes.php';
 
 $connection = new mysqli('localhost', 'admin', '123123', 'verstka');
 if ($connection->connect_error) {
     die('Connect Error (' . $connection->connect_errno . ') ' . $connection->connect_error);
 }
 
+$productTabsAttrs = new ProductTabAttributes( $connection );
+
 //handle AJAX queries
 if ( isset($_GET['method']) ) {
     $method = $_GET['method'];
-    $method();
-    die();
+    $productTabsAttrs->$method();
 }
 
 //show input seria id page
@@ -26,8 +25,8 @@ if ( empty($_POST['seria-id'] ) ) {
 if ( empty($_POST['data']) ) {
 
     $seria_id = $_POST['seria-id'];
-    $attributes = ProductTabAttributes::getSeriaAttrs( $seria_id );
-    $sortedAttrs = ProductTabAttributes::sortAttrs( $attributes );
+    $attributes = $productTabsAttrs->getSeriaAttrs( $seria_id );
+    $sortedAttrs = $productTabsAttrs->sortAttrs( $attributes );
 
     require_once './templates/manager/edit-tab.php';
 }

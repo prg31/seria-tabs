@@ -35,6 +35,9 @@ export default class ImageZoom{
         wrapper.setAttribute('id', 'image-zoom-popup');
         wrapper.innerHTML = templateBody;
 
+        const yOffset = Math.abs( (document.body.getBoundingClientRect()).y );
+        wrapper.style.top = `${yOffset}px`;
+
         const img = document.createElement('img');
         img.classList.add('popup__image');
         img.setAttribute('src', source);

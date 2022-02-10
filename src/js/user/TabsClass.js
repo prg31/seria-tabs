@@ -12,6 +12,10 @@ export default class TabsClass{
         this.nextBtn = document.querySelector( nextBtn );
 
         this.tabMaxIndex = this.tabs.length - 1;
+        if ( this.tabMaxIndex === 0 ) {
+            this.prevBtn.style.display = 'none';
+            this.nextBtn.style.display = 'none';
+        }
 
         this.activateTab();
 
@@ -42,7 +46,8 @@ export default class TabsClass{
 
         if (this.tabIndex === this.tabMinIndex) {
             this.prevBtn.classList.add('disabled')
-        } else if (this.tabIndex === this.tabMaxIndex) {
+        }
+        if (this.tabIndex === this.tabMaxIndex) {
             this.nextBtn.classList.add('disabled')
         }
     }

@@ -1,0 +1,261 @@
+@use "vars";
+
+::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+
+.group-info{
+    position: relative;
+
+    &__body{
+        position: relative;
+        border-top: 1px solid #e3e4e5;
+        border-bottom: 1px solid #e3e4e5;
+    }
+
+    @media screen and (max-width: vars.$m-width) {
+        margin: 0 10px;
+    }
+}
+
+.info-tabs{
+    margin-bottom: -1px;
+    position: relative;
+
+    &__tabs{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+
+    &__tab{
+        margin: 0;
+        z-index: 2;
+        padding: 20px 0;
+        color: #000000;
+        font-size: 12px;
+        cursor: pointer;
+        list-style: none;
+        white-space: nowrap;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    &__tab.active{
+        font-weight: bold;
+        border-bottom: 2px solid vars.$main-color;
+    }
+
+    &__tab:not(:last-child){
+        margin-right: 20px;
+    }
+
+    @media screen and (max-width: vars.$m-width) {
+        &__tab{
+            padding: 15px 0;
+            height: 20px;
+        }
+    }
+}
+
+.info-content{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+
+    &__item{
+        margin: 0 30px;
+
+        &-head{
+            margin: 0;
+            font-size: 20px;
+            color: #1d2e39;
+            font-weight: normal;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+    }
+
+    @media screen and (max-width: vars.$m-width) {
+        display: block;
+
+        &__item{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        &__main-text{
+            margin-top: 40px;
+        }
+
+        &__attachments{
+            margin-top: 50px;
+        }
+    }
+}
+
+.tab-content__item{
+    padding: 40px 40px;
+    display: none;
+
+    @media screen and (max-width: vars.$m-width) {
+        padding: 10px 0 30px 0;
+    }
+}
+
+.product-gallery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.active-view{
+    position: relative;
+
+    &__img{
+        object-fit: contain;
+        user-select: none;
+        cursor: pointer;
+        height: 350px;
+        width: 350px;
+    }
+
+    @media screen and (max-width: vars.$m-width) {
+
+        &__img{
+            width: 100%;
+            height: 220px;
+        }
+    }
+}
+
+.zoom-in-icon{
+    top: 0;
+    right: 0;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    position: absolute;
+    background: url('../../svg/zoom-in-icon.svg') center no-repeat;
+}
+
+.image-carousel{
+    margin-top: 10px;
+    display: flex;
+}
+
+.carousel__item{
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    box-sizing: border-box;
+    border: solid 1px #e8e8e8;
+
+    &:not(:last-child){
+        margin-right: 5px;
+    }
+
+    &.active{
+        filter: brightness(25%);
+        border: none;
+    }
+}
+
+.product-text{
+
+    &__price{
+        margin: 14px 0 0 0;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'IBM Plex Sans', sans-serif;
+
+        &-description{
+            margin: 4px 0 0 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            color: #f54545;
+            font-weight: normal;
+        }
+    }
+
+    &__params{
+        margin: 30px 0 0 0;
+        padding: 0 0 0 17px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: normal;
+        color: #000000;
+
+        &-item{
+            font-size: 13px;
+            list-style: disc;
+
+            &:not(:last-child){
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    @media screen and (max-width: vars.$m-width) {
+
+        &__params{
+            margin: 20px 0 0 0;
+        }
+    }
+}
+
+.attachments-list{
+    margin: 20px 0 0 0;
+    padding: 0;
+
+    &__item{
+        list-style: none;
+
+        &:not(:last-child){
+            margin-bottom: 18px;
+        }
+    }
+
+    @media screen and (max-width: vars.$m-width) {
+        display: flex;
+        overflow-x: scroll;
+        scrollbar-width: none;
+
+        &__item{
+            margin-left: 20px;
+        }
+    }
+}
+
+.product-attachment{
+    display: flex;
+    align-items: center;
+
+    &__placeholder{
+        width: 25px;
+        height: 32px;
+        margin-right: 7px;
+    }
+
+    &__link{
+        text-decoration: none;
+        cursor: pointer;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 12px;
+        color: #000000;
+    }
+
+    &__size{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 10px;
+        color: #777d81;
+    }
+
+    @media screen and (max-width: vars.$m-width) {
+
+        &__link{
+            white-space: nowrap;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import TabsClass from "./TabsClass.js";
 
 window.addEventListener('DOMContentLoaded', () => {
 
+
     new ImageCarousel({
         allImagesWrapper: '.image-carousel',
         activeImageWrapper: '.active-view',
