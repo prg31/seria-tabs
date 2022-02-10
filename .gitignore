@@ -1,5 +1,7 @@
 .idea
-build/**
+build/css/**
+build/js/**
+build/svg/**
 node_modules
 uploads/info-tables/**
 uploads/img/**
