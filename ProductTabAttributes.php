@@ -1,5 +1,7 @@
 <?php
 
+namespace seriatabs;
+
 use JetBrains\PhpStorm\NoReturn;
 
 class ProductTabAttributes {
