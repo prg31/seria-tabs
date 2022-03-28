@@ -72,7 +72,7 @@ class ProductTabAttributes {
         $data = $this->sortAttrs( $tabs_data );
 
         ob_start();
-        require_once './templates/user.php';
+        require_once __DIR__ . './templates/user.php';
         return ob_get_clean();
     }
 
