@@ -3,6 +3,7 @@
 namespace seriatabs;
 
 use JetBrains\PhpStorm\NoReturn;
+use siteroot\env;
 
 class ProductTabAttributes {
 
@@ -72,7 +73,8 @@ class ProductTabAttributes {
         $data = $this->sortAttrs( $tabs_data );
 
         ob_start();
-        require_once __DIR__ . './templates/user.php';
+
+        require_once env::libs_dir . '/seria-tabs/templates/user.php';
         return ob_get_clean();
     }
 
