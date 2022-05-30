@@ -1,27 +1,6 @@
 @use '../vars';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
-body{
-    margin: 0;
-}
-
-.container{
-    width: 1490px;
-    font-weight: 600;
-    overflow: hidden;
-
-    @media screen and (max-width: vars.$xl-width){
-        width: 1170px;
-    }
-
-    @media screen and (max-width: vars.$l-width) {
-        width: 980px;
-    }
-
-    @media screen and (max-width: vars.$m-width) {
-        width: 100%;
-    }
-}
 
 .control{
     position: absolute;

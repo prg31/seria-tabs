@@ -1,3 +1,4 @@
+<!-- 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -6,7 +7,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="/build/css/user/ProductTabAttributes.css">
@@ -15,8 +16,9 @@
 </head>
 
 <body>
-
-    <div class="container">
+    
+-->
+    <div>
 
         <section class="group-info">
             <div class="info-tabs">
@@ -48,8 +50,8 @@
                                         </div>
 
                                         <div class="image-carousel product-gallery__bottom">
-                                            <?php foreach ($values['image'] as $src): ?>
-                                                <img src="<?= $src['href'] ?>" alt="" class="carousel__item">
+                                            <?php foreach ((array)$values['image'] as $src): ?>
+                                                <img src="<?= $src['value'] ?>" alt="" class="carousel__item">
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -61,17 +63,19 @@
                                         <p class="product-text__price-description">Цены указаны без учета НДС</p>
 
                                         <ul class="product-text__params">
-                                            <?php foreach ($values['info'] as $info): ?>
+                                            <?php foreach ((array)$values['info'] as $info): ?>
                                                 <li class="product-text__params-item"><?= $info['value'] ?></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
 
+                                    
                                     <div class="info-content__attachments info-content__item">
+                                        <?php if (isset($values['attachement'])): ?>
 
                                         <h3 class="info-content__item-head">Материалы</h3>
                                         <ul class="attachments-list">
-
+                                            
                                             <?php foreach ($values['attachement'] as $attachement): ?>
 
                                                 <li class="attachments-list__item">
@@ -87,15 +91,18 @@
                                                     </div>
                                                 </li>
                                             <?php endforeach; ?>
-
+                                            
                                         </ul>
+                                        <?php endif; ?>
                                     </div>
+                                    
+
                                 </div>
                             <?php else: ?>
                                 <div class="info-table">
                                     <?php
-                                        $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $values['html'][0]['href'];
-                                        echo file_get_contents( $url );
+                                        // $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $values['html'][0]['href'];
+                                        // echo file_get_contents( $url );
                                     ?>
                                 </div>
                             <?php endif; ?>
@@ -122,6 +129,7 @@
         </div>
 
     </template>
-
+<!-- 
 </body>
-</html>
+</html> 
+-->

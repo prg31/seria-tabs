@@ -1,13 +1,17 @@
 <?php
 
-require_once './ProductTabAttributes.php';
+// require_once './ProductTabAttributes.php';
 
-$connection = new mysqli('localhost', 'admin', '123123', 'verstka');
-if ($connection->connect_error) {
-    die('Connect Error (' . $connection->connect_errno . ') ' . $connection->connect_error);
-}
+use seriatabs\ProductTabAttributes;
 
-$productTabsAttrs = new ProductTabAttributes( $connection );
+require_once __DIR__ . '/../../../vendor/autoload.php';
+
+// $connection = new mysqli('localhost', 'admin', '123123', 'verstka');
+// if ($connection->connect_error) {
+//     die('Connect Error (' . $connection->connect_errno . ') ' . $connection->connect_error);
+// }
+
+$productTabsAttrs = new ProductTabAttributes(26128);
 
 //handle AJAX queries
 if ( isset($_GET['method']) ) {

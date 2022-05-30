@@ -5,26 +5,31 @@ export default class TabsClass{
     tabMaxIndex = 0;
 
     constructor( {tabNamesContainer, tabName, tabContainer, tab, prevBtn, nextBtn} ) {
-        this.tabNames = document.querySelector( tabNamesContainer ).querySelectorAll( tabName );
-        this.tabContainer = document.querySelector( tabContainer );
-        this.tabs = this.tabContainer.querySelectorAll( tab );
-        this.prevBtn = document.querySelector( prevBtn );
-        this.nextBtn = document.querySelector( nextBtn );
 
-        this.tabMaxIndex = this.tabs.length - 1;
-        if ( this.tabMaxIndex === 0 ) {
-            this.prevBtn.style.display = 'none';
-            this.nextBtn.style.display = 'none';
+        const container = document.querySelector( tabNamesContainer )
+        if (container){
+            this.tabNames = container.querySelectorAll( tabName );
+            this.tabContainer = document.querySelector( tabContainer );
+            this.tabs = this.tabContainer.querySelectorAll( tab );
+            this.prevBtn = document.querySelector( prevBtn );
+            this.nextBtn = document.querySelector( nextBtn );
+
+            this.tabMaxIndex = this.tabs.length - 1;
+            if ( this.tabMaxIndex === 0 ) {
+                this.prevBtn.style.display = 'none';
+                this.nextBtn.style.display = 'none';
+            }
+
+            this.activateTab();
+
+            this.tabNames.forEach( tabName => {
+                tabName.addEventListener( 'click', this.handleNameClick.bind(this) )
+            })
+
+            this.prevBtn.addEventListener('click', this.showPrevTab.bind(this))
+            this.nextBtn.addEventListener('click', this.showNextTab.bind(this))
         }
 
-        this.activateTab();
-
-        this.tabNames.forEach( tabName => {
-            tabName.addEventListener( 'click', this.handleNameClick.bind(this) )
-        })
-
-        this.prevBtn.addEventListener('click', this.showPrevTab.bind(this))
-        this.nextBtn.addEventListener('click', this.showNextTab.bind(this))
     }
 
     handleNameClick( event ) {

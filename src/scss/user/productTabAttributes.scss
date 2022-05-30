@@ -1,17 +1,10 @@
 @use "vars";
 
-::-webkit-scrollbar {
-    width: 0;
-    display: none;
-}
-
 .group-info{
     position: relative;
 
     &__body{
         position: relative;
-        border-top: 1px solid #e3e4e5;
-        border-bottom: 1px solid #e3e4e5;
     }
 
     @media screen and (max-width: vars.$m-width) {
@@ -34,7 +27,7 @@
     &__tab{
         margin: 0;
         z-index: 2;
-        padding: 20px 0;
+        padding: 10px;
         color: #000000;
         font-size: 12px;
         cursor: pointer;
@@ -61,11 +54,14 @@
 }
 
 .info-content{
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
+    // display: grid;
+    // grid-template-columns: 2fr 2fr 1fr;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     &__item{
-        margin: 0 30px;
+        min-width: 200px;
 
         &-head{
             margin: 0;
@@ -95,7 +91,7 @@
 }
 
 .tab-content__item{
-    padding: 40px 40px;
+    padding: 10px;
     display: none;
 
     @media screen and (max-width: vars.$m-width) {
@@ -111,13 +107,11 @@
 
 .active-view{
     position: relative;
+    padding: 20px;
 
     &__img{
-        object-fit: contain;
         user-select: none;
         cursor: pointer;
-        height: 350px;
-        width: 350px;
     }
 
     @media screen and (max-width: vars.$m-width) {

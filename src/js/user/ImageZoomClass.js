@@ -6,6 +6,7 @@ export default class ImageZoom{
         this.popupImageWrapperSelector = popupImageWrapper;
         this.popupCloseSelector = popupClose;
 
+        if (this.activeImageContainer)
         this.activeImageContainer.addEventListener('click', this.showPopup.bind(this) )
     }
 

@@ -29,12 +29,15 @@ var ImageCarousel = /*#__PURE__*/function () {
 
     this.allImagesWrapper = document.querySelector(allImagesWrapper);
     this.activeImageWrapper = document.querySelector(activeImageWrapper);
-    this.allImages = this.allImagesWrapper.querySelectorAll('img');
-    this.allImages[0].classList.add('active');
-    this.initActiveImage(this.allImages[0].getAttribute('src'));
-    this.allImages.forEach(function (img) {
-      img.addEventListener('click', _this.replaceImage.bind(_this));
-    });
+
+    if (this.allImagesWrapper) {
+      this.allImages = this.allImagesWrapper.querySelectorAll('img');
+      this.allImages[0].classList.add('active');
+      this.initActiveImage(this.allImages[0].getAttribute('src'));
+      this.allImages.forEach(function (img) {
+        img.addEventListener('click', _this.replaceImage.bind(_this));
+      });
+    }
   }
 
   _createClass(ImageCarousel, [{
@@ -91,7 +94,7 @@ var ImageZoom = /*#__PURE__*/function () {
     this.popupTemplate = document.querySelector(popupTemplate);
     this.popupImageWrapperSelector = popupImageWrapper;
     this.popupCloseSelector = popupClose;
-    this.activeImageContainer.addEventListener('click', this.showPopup.bind(this));
+    if (this.activeImageContainer) this.activeImageContainer.addEventListener('click', this.showPopup.bind(this));
   }
 
   _createClass(ImageZoom, [{
@@ -176,24 +179,28 @@ var TabsClass = /*#__PURE__*/function () {
 
     _defineProperty(this, "tabMaxIndex", 0);
 
-    this.tabNames = document.querySelector(tabNamesContainer).querySelectorAll(tabName);
-    this.tabContainer = document.querySelector(tabContainer);
-    this.tabs = this.tabContainer.querySelectorAll(tab);
-    this.prevBtn = document.querySelector(prevBtn);
-    this.nextBtn = document.querySelector(nextBtn);
-    this.tabMaxIndex = this.tabs.length - 1;
+    var container = document.querySelector(tabNamesContainer);
 
-    if (this.tabMaxIndex === 0) {
-      this.prevBtn.style.display = 'none';
-      this.nextBtn.style.display = 'none';
+    if (container) {
+      this.tabNames = container.querySelectorAll(tabName);
+      this.tabContainer = document.querySelector(tabContainer);
+      this.tabs = this.tabContainer.querySelectorAll(tab);
+      this.prevBtn = document.querySelector(prevBtn);
+      this.nextBtn = document.querySelector(nextBtn);
+      this.tabMaxIndex = this.tabs.length - 1;
+
+      if (this.tabMaxIndex === 0) {
+        this.prevBtn.style.display = 'none';
+        this.nextBtn.style.display = 'none';
+      }
+
+      this.activateTab();
+      this.tabNames.forEach(function (tabName) {
+        tabName.addEventListener('click', _this.handleNameClick.bind(_this));
+      });
+      this.prevBtn.addEventListener('click', this.showPrevTab.bind(this));
+      this.nextBtn.addEventListener('click', this.showNextTab.bind(this));
     }
-
-    this.activateTab();
-    this.tabNames.forEach(function (tabName) {
-      tabName.addEventListener('click', _this.handleNameClick.bind(_this));
-    });
-    this.prevBtn.addEventListener('click', this.showPrevTab.bind(this));
-    this.nextBtn.addEventListener('click', this.showNextTab.bind(this));
   }
 
   _createClass(TabsClass, [{

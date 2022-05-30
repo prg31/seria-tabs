@@ -4,14 +4,16 @@ export default class ImageCarousel {
 
         this.allImagesWrapper = document.querySelector( allImagesWrapper );
         this.activeImageWrapper = document.querySelector( activeImageWrapper );
-        this.allImages = this.allImagesWrapper.querySelectorAll('img');
-
-        this.allImages[0].classList.add('active');
-        this.initActiveImage( this.allImages[0].getAttribute('src') )
-
-        this.allImages.forEach( img => {
-            img.addEventListener( 'click', this.replaceImage.bind(this) )
-        });
+        if (this.allImagesWrapper){
+            this.allImages = this.allImagesWrapper.querySelectorAll('img');
+            
+            this.allImages[0].classList.add('active');
+            this.initActiveImage( this.allImages[0].getAttribute('src') )
+            
+            this.allImages.forEach( img => {
+                img.addEventListener( 'click', this.replaceImage.bind(this) )
+            });
+        }
     }
 
     initActiveImage( src ) {

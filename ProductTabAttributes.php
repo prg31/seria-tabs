@@ -2,10 +2,12 @@
 
 namespace seriatabs;
 
+use core\env\sqli_connection;
 use JetBrains\PhpStorm\NoReturn;
 use siteroot\env;
 
 class ProductTabAttributes {
+    use sqli_connection;
 
     public string $web_uploads_path = '/uploads/'; //путь папки загрузок относительно корня URL
     public string $local_uploads_path = __DIR__ . '/uploads/'; //путь папки загрузок относительно корня файловой системы
@@ -14,23 +16,68 @@ class ProductTabAttributes {
     public string $info_tables_path = 'info-tables/';
 
     public bool|array $info_list = false;
+    public int $seria_id;
 
-    public function __construct(
-        private $connection
-    ){}
+    function __construct(int $seria_id){
+        $this->seria_id = $seria_id;
+        $this->connection = $this->jino;
+    }
+
 
     /**
      * Возвращает все аттрибуты товара для табов
      */
-    public function getSeriaAttrs( int $seria_id ): array|null
+    public function getSeriaAttrs(): array|null
     {
         if (!$this->info_list) {
-            $query = $this->connection->query("SELECT * FROM seria_attributes WHERE `seria_id` = $seria_id");
+            $query = $this->connection->query("SELECT * FROM seria_attributes WHERE `seria_id` = $this->seria_id ");
         } else {
-            $query = $this->connection->query("SELECT * FROM seria_attributes WHERE `seria_id` = $seria_id AND `category` != 'info'");
+            $query = $this->connection->query("SELECT * FROM seria_attributes WHERE `seria_id` = $this->seria_id  AND `category` != 'info'");
         }
 
-        return $query->fetch_all(MYSQLI_ASSOC);
+        if ($query && $query->num_rows!=0){
+            return $query->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return $this->modxAutoload();
+        }
+    }
+
+
+    /** 
+     * Подгружаем данные из modx
+    */
+    public function modxAutoload(){
+        $result = [];
+        $query = $this->connection->query("SELECT 
+                pagetitle as title, introtext as info,  mxval.value as image, 0 as price
+            FROM 
+                modx_site_content as contt
+            LEFT JOIN modx_site_tmplvar_contentvalues as mxval
+                on contt.id = mxval.contentid
+            WHERE 
+                contt.id = $this->seria_id and 
+                mxval.tmplvarid = 6
+        ");
+
+
+        if ($query && $query->num_rows!=0){
+            $modx = $query->fetch_assoc();
+            foreach ($modx as $prop => $value) {
+                $result[] = [
+                    'id' => count($result),
+                    'seria_id' => $this->seria_id,
+                    'tab_name' => 'Обзор',
+                    'category' => $prop,
+                    'value' => $value,
+                    'props' => '',
+                    'href' => '',
+                    'type' => '',
+                ];
+
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -65,11 +112,11 @@ class ProductTabAttributes {
      * Возвращает HTML шаблон табов по $seria_id. При передачи массива в $info_list заменят ею информацию о серии из БД
      * @param array|bool $info_list - если массив, то должен быть одномерный. Ключи не важны
      */
-    public function getProductTabs ($seria_id, array|bool $info_list = false): bool|string
+    public function getProductTabs(array|bool $info_list = false): bool|string
     {
         $this->info_list = $info_list;
 
-        $tabs_data = $this->getSeriaAttrs( $seria_id );
+        $tabs_data = $this->getSeriaAttrs();
         $data = $this->sortAttrs( $tabs_data );
 
         ob_start();
@@ -161,7 +208,7 @@ class ProductTabAttributes {
                 if (!$queryStatus) $this->response('Произошла неизвезтная ошибка','error',500);
 
             } else {
-               $this->response('Не удалось сохранить файл', 'error', 500);
+                $this->response('Не удалось сохранить файл', 'error', 500);
             }
         }
 
@@ -258,7 +305,7 @@ class ProductTabAttributes {
                 $this->deleteDirectory( $this->local_uploads_path . $this->info_tables_path . $file_dir );
             }
 
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             $this->response('Не удалось удалить файл на сервере', 'error', 500);
         }
 
