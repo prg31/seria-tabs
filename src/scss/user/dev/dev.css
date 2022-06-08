@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Open+Sans:wght@400;600&display=swap");
+.control {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+}
+@media screen and (max-width: 979px) {
+  .control {
+    display: none;
+  }
+}
+
+.control.disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.control.right {
+  right: 0;
+}
+
+.control.left {
+  left: 0;
+}
+
+.control .control-button {
+  width: 40px;
+  height: 80px;
+  border-radius: 8px;
+  background: url("../../svg/info-arr.svg") center no-repeat;
+}
+
+.control:hover .control-button {
+  background: url("../../svg/tab-arr-hover.svg") center no-repeat, #f0f2f3;
+}
+
+.control.left .control-button {
+  transform: rotate(180deg);
+}/*# sourceMappingURL=dev.css.map */

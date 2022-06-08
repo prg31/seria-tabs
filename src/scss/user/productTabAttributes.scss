@@ -92,8 +92,6 @@
 
 .tab-content__item{
     padding: 10px;
-    display: none;
-
     @media screen and (max-width: vars.$m-width) {
         padding: 10px 0 30px 0;
     }
